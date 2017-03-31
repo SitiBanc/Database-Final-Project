@@ -1,0 +1,68 @@
+﻿<html>
+	<head>
+		<meta http-equiv " Content-Type " content= " text/html; charset=utf-8" >
+		<title>訂票紀錄查詢</title>
+		<link rel="stylesheet" href="jquery.mobile-1.4.5.css" />
+		<script src="jquery.js"></script>
+		<script src="jquery.mobile-1.4.5.js"></script>
+		<style type="text/css">
+		body {
+			background: url(BUS2.jpg);
+			background-repeat:repeat-y;
+			background-position:center center;
+			background-attachment:scroll;
+			background-size:cover;
+		}
+		.ui-page {
+			background: transparent;
+		}
+		.ui-content{
+			background: transparent;
+		}
+		.ui-input-text{
+			width:350px !important;
+		}
+		.ui-btn{
+			width:50px !important;
+		}
+		</style>
+		<script type="text/javascript">
+			var reID = /^[A-Z]\d{9}$/g;    //身份證字號必為首字大寫英文字母及9碼數字
+			function check()
+			{
+					if(form1.CustomerID.value=="")
+					{
+						alert("未輸入身分證字號");
+					}
+					else if(!reID.test(form1.CustomerID.value))
+					{
+						alert("身份證字號有誤");
+						form1.CustomerID.focus();
+					}
+					else form1.submit();
+			 }
+		</script>
+	</head>
+	<body>
+		 <div data-role="page" id="search1">
+		 
+			<div data-role="header">
+				<h1>訂票紀錄查詢</h1>
+				<a href="index2.php" rel="external" data-icon="home" class="ui-btn-left">回首頁</a>
+			</div><!-- /header-->
+			
+			<div data-role="main" class="ui-content">
+				<p>請輸入身分證字號：</p>
+				<form id= "form1" name= "form1" method= "post" action= "Search2.php#search2" >
+				
+				<div class="ui-field-contain">
+					<label for="text-basic"><p align="center">身分證字號：</p></label>
+					<input type="text" data-clear-btn="true" name="CustomerID" id="text-basic" value="">
+				</div>
+				<p align="center"><input type="button" data-theme="b" value="查詢" onClick="check()" /></p>
+				<br><br><br><br><br><br><br><br><br></br></br></br></br></br></br></br></br>
+			</div><!-- /main-->
+			
+		</div><!-- /page search1-->
+	 </body> 
+</html>

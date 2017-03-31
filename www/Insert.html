@@ -1,0 +1,104 @@
+﻿<html>
+	<head>
+		<meta http-equiv " Content-Type " content= " text/html; charset=utf-8" >
+		<title>線上訂票</title>
+		<link rel="stylesheet" href="jquery.mobile-1.4.5.css" />
+		<script src="jquery.js"></script>
+		<script src="jquery.mobile-1.4.5.js"></script>
+		<style type="text/css">
+		body {
+			background: url(BUS2.jpg);
+			background-repeat:repeat-y;
+			background-position:center center;
+			background-attachment:scroll;
+			background-size:cover;
+		}
+		.ui-page {
+			background: transparent;
+		}
+		.ui-content{
+			background: transparent;
+		}
+		.ui-input-text{
+			width:350px !important;
+		}
+		.ui-btn{
+			width:50px !important;
+		}
+		</style>
+		<script type="text/javascript">
+		<!-- 此check()函式在最後的「傳送」案鈕會用到 -->
+		var rePN = /\d{10}/g;    //手機號碼必為10碼數字
+		var reID = /^[A-Z]\d{9}$/g;    //身份證字號必為首字大寫英文字母及9碼數字
+			function check()
+			{
+					<!-- 若<form>name值為form1裡的文字方塊Name值為空字串，則顯示「未輸入姓名」 -->
+					if(form1.Name.value == "") 
+					{
+						alert("未輸入姓名");
+						form1.Name.focus();
+					}
+					<!-- 若<form>屬性name值為form1裡的PhoneNumber文字方塊值為空字串，則顯示「未輸入手機號碼」 -->
+					else if(form1.PhoneNumber.value=="")
+					{
+						alert("未輸入手機號碼");
+						form1.PhoneNumber.focus();
+					}
+					else if(!rePN.test(form1.PhoneNumber.value))
+					{
+						alert("手機號碼有誤");
+						form1.PhoneNumber,focus();
+					}
+					<!-- 若<form>屬性name值為form1裡的CustomerID文字方塊為空字串，則顯示「未輸入身分證字號」 -->
+					else if(form1.CustomerID.value=="")
+					{
+						alert("未輸入身分證字號");
+						form1.CustomerID.focus();
+					}
+					else if(!reID.test(form1.CustomerID.value))
+					{
+						alert("身份證字號有誤");
+						form1.CustomerID.focus();
+					}
+					<!-- 若以上條件皆不符合，也就是表單資料皆有填寫的話，則將資料送出 -->
+					else form1.submit();
+			 }
+		</script>
+	</head>
+	<body>
+		<div data-role="page">
+		
+			<div data-role="header">
+				<h1>線上訂票</h1>
+				<a href="index2.php" rel="external" data-icon="home" class="ui-btn-left">回首頁</a>
+			</div><!-- /header-->
+			
+			<div data-role="main" class="ui-content">
+				<p>Step1.請先填寫個人資料：</p>
+				<span>*為必填欄位</span>
+				<form id= "form1" name= "form1" method= "post" action= "Insert.php" >  
+
+				    <div class="ui-field-contain">
+						<label for="text-name"><p align="center">* 姓名：</p></label>
+						<input type="text" data-clear-btn="true" name="Name" id="text-name" value="">
+					</div>
+					<div class="ui-field-contain">
+						<label for="tel"><p align="center">* 手機號碼：</p></label>
+				     	<input type="tel" data-clear-btn="true" name="PhoneNumber" id="tel" value="">
+					</div>
+					<div class="ui-field-contain">
+						<label for="text-id"><p align="center">* 身分證字號：</p></label>
+						<input type="text" data-clear-btn="true" name="CustomerID" id="text-id" value="">
+					</div>
+					<div class="ui-field-contain">
+						<label for="email"><p align="center">電子信箱：</p></label>
+				    	<input type="email" data-clear-btn="true" name="eMailAddr" id="email" value="">
+					</div>
+					<!-- type值為button而非submit，加上onClick="check()"來判斷以上的表單資料是否有填寫 -->
+					<p align="center"><input type="button" data-theme="b" value="下一步" onClick="check()" /></p>
+				</form>
+			</div><!-- /main-->
+			
+		</div><!-- /page-->
+	 </body>
+</html>

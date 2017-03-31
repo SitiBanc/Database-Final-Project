@@ -1,0 +1,73 @@
+﻿<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>線上退票</title>
+		<link rel="stylesheet" href="jquery.mobile-1.4.5.css" />
+		<script src="jquery.js"></script>
+		<script src="jquery.mobile-1.4.5.js"></script>
+		<style type="text/css">
+		body {
+			background: url(BUS2.jpg);
+			background-repeat:repeat-y;
+			background-position:center center;
+			background-attachment:scroll;
+			background-size:cover;
+		}
+		.ui-page {
+			background: transparent;
+		}
+		.ui-content{
+			background: transparent;
+		}
+		.ui-input-text{
+			width:350px !important;
+		}
+		.ui-btn{
+			width:50px !important;
+		}
+		</style>
+		<script type="text/javascript">
+		<!-- 此check()函式在最後的「下一步」按鈕會用到 -->
+			var reID = /^[A-Z]\d{9}$/g;    //身份證字號必為首字大寫英文字母及9碼數字
+			function check()
+			{
+					<!-- 若<form>屬性name值為form1裡的CustomerID文字方塊為空字串，則顯示「未輸入身分證字號」 -->
+					if(form1.CustomerID.value=="")
+					{
+						alert("未輸入身分證字號");
+					}
+					else if(!reID.test(form1.CustomerID.value))
+					{
+						alert("身份證字號有誤");
+						form1.CustomerID.focus();
+					}
+					<!-- 若以上條件皆不符合，也就是表單資料皆有填寫的話，則將資料送出 -->
+					else form1.submit();
+			 }
+		</script>
+	</head>
+	<body>
+		<div data-role="page">
+		
+			<div data-role="header">
+				<h1>線上退票</h1>
+				<a href="index2.php" rel="external" data-icon="home" class="ui-btn-left">回首頁</a>
+			</div><!-- /header-->
+			
+			<div data-role="main" class="ui-content">
+				<p>請輸入身分證字號：</p>
+				<form id= "form1" name= "form1" method= "post" action= "Delete.php#delete1" >
+				
+				<div class="ui-field-contain">
+					<label for="text-basic">身分證字號：</label>
+					<input type="text" data-clear-btn="true" name="CustomerID" id="text-basic" value="">
+				</div>
+				<!-- type值為button而非submit，加上onClick="check()"來判斷以上的表單資料是否有填寫 -->
+				<p align="center"><input type="button" data-theme="b" value="下一步" onClick="check()" /></p>
+
+			</div><!-- /main-->
+			
+		</div><!-- /page-->
+	
+	</body> 
+</html>
